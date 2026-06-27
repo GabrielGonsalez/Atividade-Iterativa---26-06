@@ -1,0 +1,5 @@
+Flask
+fastmcp
+requests
+google-genai
+python-dotenv
