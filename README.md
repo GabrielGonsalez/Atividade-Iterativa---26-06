@@ -21,7 +21,7 @@ A API Flask representa o sistema da biblioteca e disponibiliza informações sob
 - **MCP**, responsável pela comunicação entre a LLM e as ferramentas disponíveis;
 - **HTTP**, utilizado pelas ferramentas do MCP para consumir os serviços oferecidos pela API da biblioteca.
 
-O fluxo da aplicação é:
+## O fluxo da aplicação é:
 
 ```
 Usuário
@@ -39,4 +39,49 @@ Resposta
 LLM
     V
 Usuário
+```
+
+## Estrutura da aplicação
+
+| Arquivo | Função |
+|---------|---------|
+| `api.py` | Implementa a API REST da biblioteca utilizando Flask. |
+| `mcp_server.py` | Implementa o servidor MCP e define as ferramentas utilizadas pela LLM. |
+| `client.py` | Conecta o Gemini ao servidor MCP e permite a interação do usuário. |
+| `requirements.txt` | Lista as dependências necessárias para executar o projeto. |
+| `.env` | Armazena de forma discreta a chave da API do Gemini e outras configurações sensíveis para evitar possiveis problemas de segurança. |
+| `README.md` | Documentação do projeto e instruções de execução. |
+
+
+## Como executar
+
+### 1. Instale as dependências
+
+```
+pip install -r requirements.txt
+```
+
+### 2. Configure sua chave API Gemini (ou qualquer LLM de sua preferência) 
+
+```
+GEMINI_API_KEY=(sua_chave_aqui)
+```
+
+### 3. Inicie a API flask
+
+Abra um terminal e execute:
+```
+python api.py
+```
+
+### 4. Inicie o servidor MCP
+Enquanto a api estiver rodando, abra outro terminal e execute:
+```
+python mcp_server.py
+```
+
+### 5. Inicie o client 
+Abra um terceiro terminal e execute:
+```
+python client.py
 ```
