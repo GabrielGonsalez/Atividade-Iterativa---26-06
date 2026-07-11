@@ -20,32 +20,30 @@ def listar_livros():
 
     titulo = request.args.get("titulo")
 
-    # Se nenhum título foi informado, retorna todos
-    if titulo is None:
+    # Se nenhum título foi informado ou uma string vazia, retorna todos
+    if not titulo:
         return jsonify(livros)
 
     # Busca ignorando maiúsculas e minúsculas
     resultado = [
-        livro
-        for livro in livros
+        livro for livro in livros 
         if titulo.lower() in livro["titulo"].lower()
     ]
 
     return jsonify(resultado)
-
 
 @app.route("/livros/<int:id>", methods=["GET"])
 def buscar_por_id(id):
     """
     Retorna um livro pelo ID.
     """
+    
+    livro = next((l for l in livros if l["id"] == id), None)
+    
+    if livro:
+        return jsonify(livro)
 
-    for livro in livros:
-        if livro["id"] == id:
-            return jsonify(livro)
-
-    return jsonify({"erro": "Livro não encontrado"}), 404
-
+    return jsonify({"erro": "Livro não encontrado", "codigo": 404}), 404
 
 if __name__ == "__main__":
     app.run(debug=True)
