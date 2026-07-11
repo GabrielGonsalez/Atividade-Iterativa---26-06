@@ -8,7 +8,6 @@ O sistema simula um Assistente Inteligente para Biblioteca, permitindo que um us
 
 - "Quais livros estão disponíveis?"
 - "O livro Clean Code está disponível?"
-- "Empreste o livro Clean Code."
 
 Para interpretar as solicitações do usuário, o projeto utiliza uma **LLM (Large Language Model)**, como o **Gemini**, conectada a um **servidor MCP**. O modelo de IA é responsável por compreender a pergunta do usuário e decidir quando utilizar uma ferramenta disponibilizada pelo servidor MCP.
 
